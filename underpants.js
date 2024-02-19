@@ -43,7 +43,20 @@ var _ = {};
 */
 
 
+ _.first = function()
+
+/*Pseudo code 
+- If <array> is not an array return an array
+- If <number> is empty or not a number, return just the first element in <array>
+- Otherwise, return the first <number> items of <array> 
+- If number is negative Should return empty list if numerical argument is not a positive number. 
+- If number is greater Should return the whole array if numerical argument is greater than the array's length./
+- If number is not a number, and value is a string return array[0] otherwise return the first number
+
+
+
 /** _.first
+
 * Arguments:
 *   1) An array
 *   2) A number
@@ -130,6 +143,19 @@ var _ = {};
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = function(collection, func) {
+if (Array.isArray(collection)) {
+for (let i = 0; i < collection.length; i++) {
+    func(collection[i], i, collection);
+}
+} else {
+    for (let key in collection) {
+        func(collection[key], key, collection)
+    }
+}
+}
+
+_.each(['a', 'b'], function(item) {console.log(item) });
 
 /** _.unique
 * Arguments:
