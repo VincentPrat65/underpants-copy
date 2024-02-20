@@ -46,12 +46,13 @@ var _ = {};
  _.first = function()
 
 /*Pseudo code 
-- If <array> is not an array return an array
-- If <number> is empty or not a number, return just the first element in <array>
+- If <array> is not an array return an empty array
+- If <number> is undefined or NaN, return just the first element in <array>
 - Otherwise, return the first <number> items of <array> 
 - If number is negative Should return empty list if numerical argument is not a positive number. 
 - If number is greater Should return the whole array if numerical argument is greater than the array's length./
 - If number is not a number, and value is a string return array[0] otherwise return the first number
+- If number is if number greater
 
 
 
@@ -269,6 +270,41 @@ _.each(['a', 'b'], function(item) {console.log(item) });
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+_.every = function(collection, func){
+    if (Array.isArray(collection)){
+        //determine if func didn't recieve a value
+        if (func === undefined){
+            for (let i = 0; i < collection.length; i++){
+                if (!collection[i]){
+                    return false;
+                }
+            }
+
+        } else { // else  a callback was passed in
+            for (let i = 0; i < collection.length; i++ ) {
+                if (!func(collection[i], i, collection)){
+                    return false;
+                }
+            }
+        }
+        
+    } else { 
+        // determin if func didn't recieve a value
+        if (func === undefined){
+
+        } else {
+
+        }
+    }
+}
+
+_.every([2, 4 ,6], function(item){ return item % 2 === 0});
+_.every([2, 4, 5], function(item){ return item % 2 === 0});
+_.every({a: 2, b: 4}, function(item){ return item % 2 === 0})
+_.every({a: 2. b: 3}, function(item){ return item % 2 === 0})
+
+_.every([2, 4, 6]);
+_.every([2, 4, null])
 
 /** _.some
 * Arguments:
